@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fuel-cost
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fuel-cost
+  template:
+    metadata:
+      labels:
+        app: fuel-cost
+    spec:
+      containers:
+        - name: server
+          image: fuel-cost
+          ports:
+            - containerPort: 8080
+          env:
+            - name: PORT
+              value: "8080"
