@@ -1,0 +1,7 @@
+steps:
+  - name: gcr.io/cloud-builders/docker
+    args: ['build', '-t', 'gcr.io/fuel-cost-2019/fuel-cost:latest', '.']
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ["push", "gcr.io/fuel-cost-2019/fuel-cost"]
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['beta', 'run', 'deploy', 'fuel-cost', '--image', 'gcr.io/fuel-cost-2019/fuel-cost:latest']
