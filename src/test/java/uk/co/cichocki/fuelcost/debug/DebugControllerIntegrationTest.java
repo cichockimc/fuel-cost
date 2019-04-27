@@ -1,4 +1,4 @@
-package uk.co.cichocki.fuelcost.dummy;
+package uk.co.cichocki.fuelcost.debug;
 
 
 import org.junit.Test;
@@ -16,7 +16,7 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = RANDOM_PORT)
-public class DummyControllerIntegrationTest {
+public class DebugControllerIntegrationTest {
 
     @LocalServerPort
     private int port;
@@ -26,8 +26,8 @@ public class DummyControllerIntegrationTest {
 
     @Test
     public void testDummy() {
-        ResponseEntity<DummyResponse> entity = restTemplate.getForEntity(
-                "http://localhost:" + this.port + "/dummy", DummyResponse.class);
+        ResponseEntity<DebugResponse> entity = restTemplate.getForEntity(
+                "http://localhost:" + this.port + "/dummy", DebugResponse.class);
         assertEquals(HttpStatus.OK, entity.getStatusCode());
     }
 

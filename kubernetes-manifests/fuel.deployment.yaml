@@ -14,7 +14,19 @@ spec:
     spec:
       containers:
         - name: server
-          image: eu.gcr.io/fuel-cost-2019/fuel-cost
+          image: gcr.io/fuel-cost-2019/fuel-cost:kubernetes-stuff
+          livenessProbe:
+            httpGet:
+              path: /isAlive
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 3
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 40
+            periodSeconds: 10
           imagePullPolicy: Always
           ports:
             - containerPort: 8080

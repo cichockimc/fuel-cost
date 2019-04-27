@@ -1,4 +1,4 @@
-package uk.co.cichocki.fuelcost.dummy;
+package uk.co.cichocki.fuelcost.debug;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Profile;
@@ -12,15 +12,15 @@ import org.springframework.web.bind.annotation.RestController;
 @Profile("debug")
 @RestController
 @Slf4j
-public class DummyController {
+public class DebugController {
     @GetMapping("/dummy")
-    public DummyResponse foo() {
-        log.trace("Received dummy get request");
-        return DummyResponse.builder().message("I am alive").number(100).build();
+    public DebugResponse foo() {
+        log.trace("Received debug get request");
+        return DebugResponse.builder().message("I am alive").number(100).build();
     }
 
     @GetMapping("/problem")
-    public DummyResponse problem() {
+    public DebugResponse problem() {
         throw new RuntimeException("bad things happened");
     }
 
