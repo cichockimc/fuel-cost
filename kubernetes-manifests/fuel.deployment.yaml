@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
         - name: server
-          image: fuel-cost
+          image: eu.gcr.io/fuel-cost-2019/fuel-cost
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
           env:

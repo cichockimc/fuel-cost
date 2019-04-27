@@ -21,8 +21,7 @@ public class DummyController {
 
     @GetMapping("/problem")
     public DummyResponse problem() {
-        String a = null;
-        return DummyResponse.builder().message(a).build();
+        throw new RuntimeException("bad things happened");
     }
 
 }
