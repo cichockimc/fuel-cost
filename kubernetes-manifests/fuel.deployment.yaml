@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fuel-cost
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fuel-cost
+  template:
+    metadata:
+      labels:
+        app: fuel-cost
+    spec:
+      containers:
+        - name: server
+          image: eu.gcr.io/fuel-cost-2019/fuel-cost
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: PORT
+              value: "8080"
