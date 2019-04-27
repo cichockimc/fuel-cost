@@ -4,6 +4,7 @@ metadata:
   name: fuel-cost-external
 spec:
   type: LoadBalancer
+  loadBalancerIP: "35.204.53.27"
   selector:
     app: fuel-cost
   ports:
