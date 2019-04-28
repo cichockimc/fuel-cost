@@ -28,6 +28,7 @@ Cucumber
 Spring docs / Swagger
 Code coverage plugin
 Not ideal csv file loading could be improved
+Better error handling / error messages
 
 ### Examples
 #### sample request
