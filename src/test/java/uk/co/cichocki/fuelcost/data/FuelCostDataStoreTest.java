@@ -1,31 +1,27 @@
 package uk.co.cichocki.fuelcost.data;
 
-import org.junit.Before;
 import org.junit.Test;
-import uk.co.cichocki.fuelcost.exception.MultipleRecordsMatchCriteria;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+import uk.co.cichocki.fuelcost.FuelCostApplication;
 import uk.co.cichocki.fuelcost.model.PriceRecord;
-import uk.co.cichocki.fuelcost.service.FuelPricesImporter;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.time.LocalDate;
 import java.util.Optional;
 
 import static org.junit.Assert.*;
 
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = FuelCostApplication.class)
 public class FuelCostDataStoreTest {
 
-    private FuelCostDataStore dataStore = new FuelCostDataStore();
-
-    @Before
-    public void setup() throws IOException, URISyntaxException {
-        // this line makes this test far from definition of unit testing (time restrictions, need to carry on)
-        FuelPricesImporter importer = new FuelPricesImporter(dataStore);
-        importer.importData();
-    }
+    @Autowired
+    FuelCostDataStore dataStore;
 
     @Test
-    public void get() throws MultipleRecordsMatchCriteria {
+    public void get1() {
         LocalDate date = LocalDate.of(2018, 1, 31);
         Optional<PriceRecord> maybePriceRecord = dataStore.get(date);
         assertTrue(maybePriceRecord.isPresent());
@@ -35,7 +31,16 @@ public class FuelCostDataStoreTest {
 
 
     @Test
-    public void getNotFound() throws MultipleRecordsMatchCriteria {
+    public void get2() {
+        LocalDate date = LocalDate.of(2007, 6, 23);
+        Optional<PriceRecord> maybePriceRecord = dataStore.get(date);
+        assertTrue(maybePriceRecord.isPresent());
+        PriceRecord priceRecord = maybePriceRecord.get();
+        assertEquals(LocalDate.of(2007, 6, 25), priceRecord.getDate());
+    }
+
+    @Test
+    public void getNotFound() {
         LocalDate date = LocalDate.of(2000, 1, 31);
         Optional<PriceRecord> maybeRecord = dataStore.get(date);
         assertFalse(maybeRecord.isPresent());
