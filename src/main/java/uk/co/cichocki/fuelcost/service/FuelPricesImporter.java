@@ -1,6 +1,7 @@
 package uk.co.cichocki.fuelcost.service;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StopWatch;
 import uk.co.cichocki.fuelcost.data.FuelCostDataStore;
@@ -9,11 +10,10 @@ import uk.co.cichocki.fuelcost.model.PriceRecord;
 import uk.co.cichocki.fuelcost.model.SmartFloat;
 
 import javax.annotation.PostConstruct;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
@@ -42,10 +42,12 @@ public class FuelPricesImporter {
     }
 
     // for simplicity, hardcoded path, separator; no custom error handling either
-    public void importData() throws URISyntaxException, IOException {
+    public void importData() throws IOException {
 
-        Path path = Paths.get(ClassLoader.getSystemResource("fuel-stats.csv").toURI());
-        try (Stream<String> lines = Files.lines(path).parallel()) {
+        // todo mc to be revisited, java hates reading class path files
+        BufferedReader reader = new BufferedReader(
+                new InputStreamReader(new ClassPathResource("fuel-stats.csv").getInputStream()));
+        try (Stream<String> lines = reader.lines()) {
             List<PriceRecord> data = lines
                     .map(this::lineToRecord)
                     .sorted(Comparator.comparing(PriceRecord::getDate))

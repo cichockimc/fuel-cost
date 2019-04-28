@@ -4,7 +4,6 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.util.LinkedMultiValueMap;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import uk.co.cichocki.fuelcost.model.PriceRecord;
 
 import java.time.LocalDate;
@@ -29,7 +28,7 @@ public class FuelCostDataStore implements DataStore<PriceRecord, LocalDate> {
 
     @Override
     public void save(PriceRecord priceRecord) {
-        throw new NotImplementedException();
+        throw new RuntimeException("not implemented");
     }
 
     @Override
