@@ -19,9 +19,17 @@ public class SmartFloatSerializerTest {
     ObjectMapper mapper;
 
     @Test
-    public void serialize() throws JsonProcessingException {
+    public void serialize1() throws JsonProcessingException {
         String expected = "10.23";
         SmartFloat sfloat = new SmartFloat(10.23);
+        String result = mapper.writeValueAsString(sfloat);
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void serialize2() throws JsonProcessingException {
+        String expected = "34";
+        SmartFloat sfloat = new SmartFloat(34);
         String result = mapper.writeValueAsString(sfloat);
         assertEquals(expected, result);
     }

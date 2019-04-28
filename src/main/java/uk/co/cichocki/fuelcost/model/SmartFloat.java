@@ -1,5 +1,9 @@
 package uk.co.cichocki.fuelcost.model;
 
+import lombok.Getter;
+
+import javax.validation.constraints.Positive;
+
 /**
  * To avoid floating point numbers rounding errors
  * we'll store all values as 100 * value
@@ -7,23 +11,18 @@ package uk.co.cichocki.fuelcost.model;
  * hence there is no need for
  * BigInteger or even Long. Regular int should be good enough and serve the purpose well
  */
+@Getter
 public class SmartFloat {
+
+    @Positive(message = "Value must be positive")
     private final int value; // unit * 100
 
-    private SmartFloat(int value) {
-        this.value = value;
-    }
-
-    public SmartFloat(float value) {
-        this((int) (value * 100));
-    }
-
     public SmartFloat(double value) {
-        this((int) (value * 100));
+        this.value = (int) (value * 100);
     }
 
-    public int getValue() {
-        return value;
+    public SmartFloat(int value) {
+        this.value = value * 100;
     }
 
     @Override
