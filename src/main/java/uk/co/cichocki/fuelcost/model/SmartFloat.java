@@ -3,6 +3,9 @@ package uk.co.cichocki.fuelcost.model;
 import lombok.Getter;
 
 import javax.validation.constraints.Positive;
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 
 /**
  * To avoid floating point numbers rounding errors
@@ -14,32 +17,37 @@ import javax.validation.constraints.Positive;
 @Getter
 public class SmartFloat {
 
+    private final static int PRECISION = 10000;
+    private final static MathContext context = new MathContext(PRECISION, RoundingMode.HALF_EVEN); // banker's precision
+    private final static int SCALE = 2;
+
     @Positive(message = "Value must be positive")
-    private final int value; // unit * 100
+    private final BigDecimal value;
 
     public SmartFloat(double value) {
-        this.value = (int) (value * 100);
+        this.value = new BigDecimal(String.valueOf(value), context);
     }
 
     public SmartFloat(int value) {
-        this.value = value * 100;
+        this.value = new BigDecimal(value, context);
+    }
+
+    public SmartFloat(@Positive(message = "Value must be positive") BigDecimal value) {
+        this.value = value;
     }
 
     @Override
     public String toString() {
-        if (value % 100 == 0) {
-            return String.valueOf(value / 100);
-        } else {
-            return String.valueOf(value * 0.01);
-        }
+        return isIntegerValue() ? String.valueOf(value.intValueExact()) : value.setScale(SCALE, RoundingMode.HALF_EVEN).toString();
     }
 
-    public static SmartFloat of(double d) {
-        return new SmartFloat(d);
+    public SmartFloat divideBy(SmartFloat divisor) {
+
+        return new SmartFloat(this.value.divide(divisor.value, context));
     }
 
-    public static SmartFloat of(int d) {
-        return new SmartFloat(d);
+    public SmartFloat multiplyBy(SmartFloat multiplier) {
+        return new SmartFloat(this.value.multiply(multiplier.value, context));
     }
 
     @Override
@@ -49,12 +57,27 @@ public class SmartFloat {
 
         SmartFloat that = (SmartFloat) o;
 
-        return value == that.value;
+        return value.compareTo(that.value) == 0;
 
     }
 
     @Override
     public int hashCode() {
-        return value;
+        return value.hashCode();
     }
+
+    private boolean isIntegerValue() {
+        return value.stripTrailingZeros().scale() <= 0;
+    }
+
+    
+    public static SmartFloat of(double d) {
+        return new SmartFloat(d);
+    }
+
+    public static SmartFloat of(int d) {
+        return new SmartFloat(d);
+    }
+
+
 }

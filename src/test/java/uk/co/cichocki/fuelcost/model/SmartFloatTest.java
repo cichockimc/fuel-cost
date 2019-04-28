@@ -15,4 +15,16 @@ public class SmartFloatTest {
         assertEquals("2.34", floating.toString());
         assertEquals("89", mixed.toString());
     }
+
+    @Test
+    public void divideBy() {
+        SmartFloat integer = new SmartFloat(10);
+        SmartFloat floating = new SmartFloat(2.34);
+        SmartFloat result = integer.divideBy(floating);
+        assertEquals("4.27", result.toString());
+    }
+
+    @Test
+    public void multiplyBy() {
+    }
 }

@@ -25,6 +25,8 @@ public class FuelCostDataStore implements DataStore<PriceRecord, LocalDate> {
 
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMM");
 
+    private PriceRecord logicalToday;
+
     @Override
     public void save(PriceRecord priceRecord) {
         throw new NotImplementedException();
@@ -43,6 +45,7 @@ public class FuelCostDataStore implements DataStore<PriceRecord, LocalDate> {
             a.next = b;
             return b;
         });
+        logicalToday = reduced.orElseThrow(() -> new RuntimeException("Last element is absent. Not likely scenario")).self;
         log.debug("Saved {} records, last element: {}", map.size(), reduced);
     }
 
@@ -76,6 +79,10 @@ public class FuelCostDataStore implements DataStore<PriceRecord, LocalDate> {
         Optional<PriceRecord> result = Optional.ofNullable(potentialResult).map(LinkedPriceRecord::getSelf);
         log.debug("returning {}", result);
         return result;
+    }
+
+    public PriceRecord getLogicalToday() {
+        return logicalToday;
     }
 
     private <T> Optional<T> maybeLastElement(Stream<T> stream) {
