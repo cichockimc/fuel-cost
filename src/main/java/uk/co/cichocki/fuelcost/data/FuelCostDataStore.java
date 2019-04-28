@@ -64,7 +64,7 @@ public class FuelCostDataStore implements DataStore<PriceRecord, LocalDate> {
             log.warn("Key {} not found", key);
             return Optional.empty();
         }
-        Optional<LinkedPriceRecord> maybeRecord = maybeLastElement(list.stream().filter(a -> a.self.getDate().isAfter(criteria)));
+        Optional<LinkedPriceRecord> maybeRecord = list.stream().filter(a -> a.self.getDate().isAfter(criteria)).findFirst();
         if (maybeRecord.isPresent()) {
             Optional<PriceRecord> self = Optional.ofNullable(maybeRecord.get().self);
             log.debug("Returning {}", self);

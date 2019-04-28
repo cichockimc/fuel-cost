@@ -39,6 +39,16 @@ public class FuelCostDataStoreTest {
         assertEquals(LocalDate.of(2007, 6, 25), priceRecord.getDate());
     }
 
+
+    @Test
+    public void get3() {
+        LocalDate date = LocalDate.of(2017, 1, 2);
+        Optional<PriceRecord> maybePriceRecord = dataStore.get(date);
+        assertTrue(maybePriceRecord.isPresent());
+        PriceRecord priceRecord = maybePriceRecord.get();
+        assertEquals(LocalDate.of(2017, 1, 9), priceRecord.getDate());
+    }
+
     @Test
     public void getNotFound() {
         LocalDate date = LocalDate.of(2000, 1, 31);

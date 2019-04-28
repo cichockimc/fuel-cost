@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Data
 public class Journey {
     @NotNull
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-M-d")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @PastOrPresent(message = "Invalid date")
     LocalDate date;
 

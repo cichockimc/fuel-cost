@@ -7,6 +7,6 @@ import lombok.Data;
 @Builder
 public class FuelCostResponse {
     Journey journey;
-    SmartFloat dutyPaid;
+    JourneyCost cost;
     SmartFloat difference; // How much cheaper/more expensive the journey would be today
 }

@@ -14,6 +14,8 @@ public class SmartFloatTest {
         assertEquals("10", integer.toString());
         assertEquals("2.34", floating.toString());
         assertEquals("89", mixed.toString());
+        assertEquals("89", new SmartFloat(89.00001).toString());
+        assertEquals("89.01", new SmartFloat(89.01001).toString());
     }
 
     @Test

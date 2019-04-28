@@ -20,6 +20,7 @@ public class SmartFloat {
     private final static int PRECISION = 10000;
     private final static MathContext context = new MathContext(PRECISION, RoundingMode.HALF_EVEN); // banker's precision
     private final static int SCALE = 2;
+    public static final RoundingMode ROUNDING_MODE = RoundingMode.HALF_EVEN;
 
     @Positive(message = "Value must be positive")
     private final BigDecimal value;
@@ -36,9 +37,8 @@ public class SmartFloat {
         this.value = value;
     }
 
-    @Override
-    public String toString() {
-        return isIntegerValue() ? String.valueOf(value.intValueExact()) : value.setScale(SCALE, RoundingMode.HALF_EVEN).toString();
+    private static boolean isIntegerValue(BigDecimal val) {
+        return val.setScale(SCALE, ROUNDING_MODE).stripTrailingZeros().scale() <= 0;
     }
 
     public SmartFloat divideBy(SmartFloat divisor) {
@@ -48,6 +48,12 @@ public class SmartFloat {
 
     public SmartFloat multiplyBy(SmartFloat multiplier) {
         return new SmartFloat(this.value.multiply(multiplier.value, context));
+    }
+
+    @Override
+    public String toString() {
+        BigDecimal scaled = value.setScale(SCALE, RoundingMode.HALF_EVEN);
+        return isIntegerValue(scaled) ? String.valueOf(scaled.intValueExact()) : scaled.toString();
     }
 
     @Override
@@ -66,11 +72,11 @@ public class SmartFloat {
         return value.hashCode();
     }
 
-    private boolean isIntegerValue() {
-        return value.stripTrailingZeros().scale() <= 0;
+    public SmartFloat subtract(SmartFloat subtrahend) {
+        return new SmartFloat(this.value.subtract(subtrahend.value, context));
     }
 
-    
+
     public static SmartFloat of(double d) {
         return new SmartFloat(d);
     }
