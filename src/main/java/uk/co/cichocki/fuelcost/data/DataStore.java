@@ -2,6 +2,7 @@ package uk.co.cichocki.fuelcost.data;
 
 import uk.co.cichocki.fuelcost.exception.MultipleRecordsMatchCriteria;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -12,7 +13,9 @@ import java.util.Optional;
  */
 public interface DataStore<MODEL, SEARCH> {
 
-    boolean save(MODEL model);
+    void save(MODEL model);
+
+    void saveAll(List<MODEL> list);
 
     Optional<MODEL> get(SEARCH criteria) throws MultipleRecordsMatchCriteria;
 }

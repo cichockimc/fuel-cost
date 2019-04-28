@@ -33,4 +33,28 @@ public class SmartFloat {
             return String.valueOf(value * 0.01);
         }
     }
+
+    public static SmartFloat of(double d) {
+        return new SmartFloat(d);
+    }
+
+    public static SmartFloat of(int d) {
+        return new SmartFloat(d);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof SmartFloat)) return false;
+
+        SmartFloat that = (SmartFloat) o;
+
+        return value == that.value;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return value;
+    }
 }
