@@ -1,7 +1,10 @@
 package uk.co.cichocki.fuelcost.model;
 
+import lombok.Data;
+
+@Data
 public class FuelData {
-    int pumpPrice; // 100 * pence / litre
-    int dutyRate;  // 100 * pence / litre
-    int vatRate;   // 100 * %
+    SmartFloat pumpPrice;
+    SmartFloat dutyRate;
+    SmartFloat vatRate;
 }
