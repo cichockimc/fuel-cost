@@ -1,7 +1,9 @@
 # fuel-cost
 Web service to calculate the fuel cost of a journey. The project is dockerised, cloud ready. 
 No external dependencies are required to run it. 
-note: I'd call it early beta version. 
+notes: 
+- I'd call it early beta version. 
+- Prices are in *pence*, not pounds
 
 ## where the solution is hosted
 It is hosted in Google Cloud. It is accessible from the Internet at `fuel-cost.cichocki.co.uk`
@@ -23,12 +25,13 @@ java -jar fuel-cost-1.0.0.jar
 ```
 
 ## What could be done with more time
-More tests, including manual testing
-Cucumber 
-Spring docs / Swagger
-Code coverage plugin
-Not ideal csv file loading could be improved
-Better error handling / error messages
+- More tests, including manual testing
+- Cucumber 
+- Spring docs / Swagger
+- Code coverage plugin
+- Not ideal csv file loading could be improved
+- Better error handling / error messages
+- Money unit: change from pence to pound
 
 ### Examples
 #### sample request
