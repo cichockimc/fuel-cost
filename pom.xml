@@ -5,20 +5,35 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.4.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <version>2.2.0.M2</version>
+        <relativePath/>
     </parent>
+
     <groupId>uk.co.cichocki</groupId>
     <artifactId>fuel-cost</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <name>fuel-cost</name>
     <description>Web service to calculate the fuel cost of a journey.</description>
     <packaging>jar</packaging>
 
     <properties>
-        <java.version>1.8</java.version>
-        <checkstyle.config.location>./checkstyle.xml</checkstyle.config.location>
+        <java.version>11</java.version>
     </properties>
+
+    <repositories>
+        <repository>
+            <id>repository.spring.milestone</id>
+            <name>Spring Milestone Repository</name>
+            <url>http://repo.spring.io/milestone</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>repository.spring.milestone</id>
+            <name>Spring Milestone Repository</name>
+            <url>http://repo.spring.io/milestone</url>
+        </pluginRepository>
+    </pluginRepositories>
 
     <dependencies>
         <dependency>
@@ -47,16 +62,17 @@
     </dependencies>
 
     <build>
+        <finalName>fuel-cost</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>3.0.0</version>
-            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-checkstyle-plugin</artifactId>-->
+<!--                <version>3.0.0</version>-->
+<!--            </plugin>-->
         </plugins>
     </build>
 

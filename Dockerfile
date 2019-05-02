@@ -18,10 +18,10 @@ COPY . ./
 RUN mvn -Dmaven.test.skip=true package
 
 # Build runtime image.
-FROM openjdk:8-jre-alpine
+FROM openjdk:11-jre
 
 # Copy the compiled files over.
 COPY --from=build-env /app/target/ /app/
 
 # Starts java app with debugging server at port 5005.
-CMD ["java", "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005,quiet=y", "-jar", "/app/fuel-cost-1.0.0.jar"]
+CMD ["java", "-jar", "/app/fuel-cost.jar"]

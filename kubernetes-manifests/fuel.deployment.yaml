@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: server
-          image: gcr.io/fuel-cost-2019/fuel-cost:latest
+          image: gcr.io/fuel-cost-2019/fuel-cost:beta
           livenessProbe:
             httpGet:
               path: /isAlive
