@@ -45,10 +45,10 @@ public class FuelCostControllerTest {
                 "        \"mileage\": 116.2\n" +
                 "    },\n" +
                 "    \"cost\": {\n" +
-                "        \"fuelCost\": 500.56,\n" +
-                "        \"dutyPaid\": 239.14\n" +
+                "        \"fuelCost\": 5.01,\n" +
+                "        \"dutyPaid\": 2.39\n" +
                 "    },\n" +
-                "    \"difference\": 52.37\n" +
+                "    \"difference\": 0.52\n" +
                 "}";
         HttpHeaders headers = new HttpHeaders();
         headers.add(HttpHeaders.CONTENT_TYPE, "application/json");

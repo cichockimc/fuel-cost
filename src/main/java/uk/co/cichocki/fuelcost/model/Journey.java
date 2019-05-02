@@ -1,7 +1,9 @@
 package uk.co.cichocki.fuelcost.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
+import uk.co.cichocki.fuelcost.model.json.SmartFloatDefaultSerializer;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -20,9 +22,11 @@ public class Journey {
 
     @NotNull
     @Valid
+    @JsonSerialize(using = SmartFloatDefaultSerializer.class)
     SmartFloat mpg;
 
     @NotNull
     @Valid
+    @JsonSerialize(using = SmartFloatDefaultSerializer.class)
     SmartFloat mileage;
 }

@@ -56,6 +56,11 @@ public class SmartFloat {
         return isIntegerValue(scaled) ? String.valueOf(scaled.intValueExact()) : scaled.toString();
     }
 
+    public String toPounds() {
+        BigDecimal scaled = value.divide(BigDecimal.valueOf(100), RoundingMode.HALF_EVEN).setScale(SCALE, RoundingMode.HALF_EVEN);
+        return isIntegerValue(scaled) ? String.valueOf(scaled.intValueExact()) : scaled.toString();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

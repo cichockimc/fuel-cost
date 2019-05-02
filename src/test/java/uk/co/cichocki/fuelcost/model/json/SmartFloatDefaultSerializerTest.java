@@ -13,14 +13,14 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @JsonTest
-public class SmartFloatSerializerTest {
+public class SmartFloatDefaultSerializerTest {
 
     @Autowired
     ObjectMapper mapper;
 
     @Test
     public void serialize1() throws JsonProcessingException {
-        String expected = "10.23";
+        String expected = "{\"value\":10.23}";
         SmartFloat sfloat = new SmartFloat(10.23);
         String result = mapper.writeValueAsString(sfloat);
         assertEquals(expected, result);
@@ -28,7 +28,7 @@ public class SmartFloatSerializerTest {
 
     @Test
     public void serialize2() throws JsonProcessingException {
-        String expected = "34";
+        String expected = "{\"value\":34}";
         SmartFloat sfloat = new SmartFloat(34);
         String result = mapper.writeValueAsString(sfloat);
         assertEquals(expected, result);

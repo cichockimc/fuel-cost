@@ -3,7 +3,6 @@ Web service to calculate the fuel cost of a journey. The project is dockerised, 
 No external dependencies are required to run it. 
 notes: 
 - I'd call it early beta version. 
-- Prices are in *pence*, not pounds
 
 ## where the solution is hosted
 It is hosted in Google Cloud. It is accessible from the Internet at `fuel-cost.cichocki.co.uk`
@@ -21,7 +20,7 @@ mvn clean install
 ```
 ## run locally
 ```
-java -jar fuel-cost-1.0.0.jar
+java -jar fuel-cost.jar
 ```
 
 ## What could be done with more time
@@ -54,9 +53,9 @@ java -jar fuel-cost-1.0.0.jar
         "mileage": 116.2
     },
     "cost": {
-        "fuelCost": 500.56,
-        "dutyPaid": 239.14
+        "fuelCost": 5.01,
+        "dutyPaid": 2.39
     },
-    "difference": 52.37
+    "difference": 0.52
 }
 ```
