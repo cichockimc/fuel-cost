@@ -16,7 +16,7 @@ public class DebugController {
     @GetMapping("/dummy")
     public DebugResponse foo() {
         log.trace("Received debug get request");
-        return DebugResponse.builder().message("I am alive").number(100).build();
+        return DebugResponse.builder().message("I am alive").build();
     }
 
     @GetMapping("/problem")

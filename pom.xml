@@ -11,7 +11,7 @@
 
     <groupId>uk.co.cichocki</groupId>
     <artifactId>fuel-cost</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <name>fuel-cost</name>
     <description>Web service to calculate the fuel cost of a journey.</description>
     <packaging>jar</packaging>

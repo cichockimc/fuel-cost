@@ -1,5 +1,6 @@
 package uk.co.cichocki.fuelcost.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import uk.co.cichocki.fuelcost.debug.DebugResponse;
@@ -9,10 +10,12 @@ import uk.co.cichocki.fuelcost.debug.DebugResponse;
  * readiness will be served by actuator health endpoint
  */
 @RestController
+@Slf4j
 public class LivenessController {
 
     @GetMapping("/isAlive")
     public DebugResponse isALive() {
-        return new DebugResponse(0, "Up and ready");
+        log.debug("isAlive endpoint called");
+        return new DebugResponse("Up and ready");
     }
 }
