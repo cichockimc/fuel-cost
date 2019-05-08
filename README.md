@@ -5,7 +5,7 @@ notes:
 - I'd call it early beta version. 
 
 ## where the solution is hosted
-It is hosted in Google Cloud. It is accessible from the Internet at `fuel-cost.cichocki.co.uk`
+This service is hosted in Google Cloud and is accessible from the Internet at `fuel-cost.cichocki.co.uk`
 Endpoint: `/journey`.  
 
 Sample request:
@@ -30,7 +30,8 @@ java -jar fuel-cost.jar
 - Code coverage plugin
 - Not ideal csv file loading could be improved
 - Better error handling / error messages
-- Money unit: change from pence to pound
+- secure connection (https)
+- small angularjs frontend would be a nice to have
 
 ### Examples
 #### sample request
