@@ -2,7 +2,7 @@
 Web service to calculate the fuel cost of a journey. The project is dockerised, cloud ready. 
 No external dependencies are required to run it. 
 notes: 
-- I'd call it early beta version. 
+- I'd call it a beta version, functionally speaking can be considered MVP.
 
 ## where the solution is hosted
 This service is hosted in Google Cloud and is accessible from the Internet at `fuel-cost.cichocki.co.uk`

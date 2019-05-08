@@ -13,7 +13,6 @@ import javax.annotation.PostConstruct;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.URISyntaxException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
@@ -25,14 +24,14 @@ import java.util.stream.Stream;
 @Component
 public class FuelPricesImporter {
 
-    final FuelCostDataStore dataStore;
+    private final FuelCostDataStore dataStore;
 
     public FuelPricesImporter(FuelCostDataStore dataStore) {
         this.dataStore = dataStore;
     }
 
     @PostConstruct
-    public void postConstruct() throws IOException, URISyntaxException {
+    public void postConstruct() throws IOException {
         log.debug("About to import csv data");
         StopWatch stopWatch = new StopWatch("data-import");
         stopWatch.start();
@@ -42,7 +41,7 @@ public class FuelPricesImporter {
     }
 
     // for simplicity, hardcoded path, separator; no custom error handling either
-    public void importData() throws IOException {
+    private void importData() throws IOException {
 
         // todo mc to be revisited, java hates reading class path files
         BufferedReader reader = new BufferedReader(
@@ -56,8 +55,15 @@ public class FuelPricesImporter {
         }
     }
 
-    public PriceRecord lineToRecord(String line) {
-        // Date,ULSP Pump price,ULSP Duty rate,ULSP VAT (% rate),ULSD Pump price,ULSD Duty rate,ULSD VAT (% rate)
+    /**
+     * expected record format is
+     * Date, ULSP Pump price, ULSP Duty rate, ULSP VAT (% rate),
+     * ULSD Pump price, ULSD Duty rate, ULSD VAT (% rate)
+     *
+     * @param line data read from csv file
+     * @return PriceRecord instance equivalent to parsed input data
+     */
+    PriceRecord lineToRecord(String line) {
         String[] split = line.split(",");
         DateTimeFormatter ft = DateTimeFormatter.ofPattern("M/d/yyyy");
         FuelData petrolData = FuelData.builder()
