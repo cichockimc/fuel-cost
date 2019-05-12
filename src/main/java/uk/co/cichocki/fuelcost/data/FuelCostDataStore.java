@@ -16,6 +16,9 @@ import java.util.stream.Stream;
 /**
  * this implementation is neither thread safe nor suitable for large data sets
  * this one is just tailored for the specific requirements
+ *  * currently, in memory solution is used, due to requirements:
+ *  * - can't use external dependencies (standalone database is off the table then)
+ *  * - input data set is relatively small (~800 records), no harm in storing it in memory
  */
 @Component
 @Slf4j

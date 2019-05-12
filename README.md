@@ -1,14 +1,14 @@
 # fuel-cost
 Web service to calculate the fuel cost of a journey. The project is dockerised, cloud ready. 
-No external dependencies are required to run it. 
-notes: 
-- I'd call it a beta version, functionally speaking can be considered MVP.
 
 ## where the solution is hosted
 This service is hosted in Google Cloud and is accessible from the Internet at `fuel-cost.cichocki.co.uk`
 Endpoint: `/journey`.  
 
-Sample request:
+## Artifactory
+[Bintray](https://bintray.com/cichockimc/fuel-cost/fuel-cost)
+
+## Sample request:
 ```
 curl fuel-cost.cichocki.co.uk -d '{"date": "2017-01-02","mpg": 128.01,"mileage": 116.2,"fuelType": "DIESEL"}'
 ```
