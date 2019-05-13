@@ -30,6 +30,37 @@
         </repository>
     </distributionManagement>
 
+    <repositories>
+        <repository>
+            <id>repository.spring.milestone</id>
+            <name>Spring Milestone Repository</name>
+            <url>http://repo.spring.io/milestone</url>
+        </repository>
+        <repository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>bintray-cichockimc-maven</id>
+            <name>bintray</name>
+            <url>https://dl.bintray.com/jaycroaker/maven</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>repository.spring.milestone</id>
+            <name>Spring Milestone Repository</name>
+            <url>http://repo.spring.io/milestone</url>
+        </pluginRepository>
+        <pluginRepository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>bintray-cichockimc-maven</id>
+            <name>bintray-plugins</name>
+            <url>https://dl.bintray.com/jaycroaker/maven</url>
+        </pluginRepository>
+    </pluginRepositories>
+    
     <dependencies>
 
         <dependency>
