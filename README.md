@@ -2,14 +2,14 @@
 Web service to calculate the fuel cost of a journey. The project is dockerised, cloud ready. 
 
 ## where the solution is hosted
-This service is hosted in Google Cloud and is accessible from the Internet at `fuel-cost.cichocki.co.uk`
+Currently unavailable, due to free tier expiration issue. 
+Used to be hosted in Google Cloud and was accessible from the Internet at `fuel-cost.cichocki.co.uk`
 Endpoint: `/journey`.  
+There is a plan to resurrect it :)
 
 ## Artifactory
 [Bintray](https://bintray.com/cichockimc/fuel-cost/fuel-cost)
 
-## GCP deployment
-Currently unavailable, due to free tier expiration issue. 
 
 ## build
 The command below will run tests and build application
