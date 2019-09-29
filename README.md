@@ -8,10 +8,8 @@ Endpoint: `/journey`.
 ## Artifactory
 [Bintray](https://bintray.com/cichockimc/fuel-cost/fuel-cost)
 
-## Sample request:
-```
-curl fuel-cost.cichocki.co.uk -d '{"date": "2017-01-02","mpg": 128.01,"mileage": 116.2,"fuelType": "DIESEL"}'
-```
+## GCP deployment
+Currently unavailable, due to free tier expiration issue. 
 
 ## build
 The command below will run tests and build application
